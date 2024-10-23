@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ResultsInfo from '../ResultsInfo/ResultsInfo';
-
+import SubjectsInfo from '../SubjectsInfo/SubjectsInfo';
 // Custom Card component
 const CustomCard = ({ children, className = "" }) => {
   return (
@@ -154,12 +154,7 @@ const Cards = ({ onCardClick }) => {
             {selectedCard === 2 && (
               <ResultsInfo />
             )}
-            {selectedCard === 3 && (
-              <div className="p-4">
-                <h3 className="text-lg font-semibold">Subjects Information</h3>
-                <p>Here is the subjects info component...</p>
-              </div>
-            )}
+            {selectedCard === 3 && <SubjectsInfo />}
           </div>
         </div>
       )}
