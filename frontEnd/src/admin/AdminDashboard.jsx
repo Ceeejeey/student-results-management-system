@@ -8,7 +8,7 @@ import Cards from "../components/Cards/Cards";
 const AdminDashboard = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
-  const [selectedCardContent, setSelectedCardContent] = useState(null); // Track selected card content
+  const [selectedCardContent, setSelectedCardContent] = useState(null);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -19,28 +19,29 @@ const AdminDashboard = () => {
   };
 
   const handleCardClick = (content) => {
-    setSelectedCardContent(content); // Set selected card content
+    setSelectedCardContent(content);
   };
 
   return (
-    <div className={` ${darkMode && "dark"} font-quicksand bg-slate-200 h-screen flex`}>
-      <Sidebar isSideBarOpen={isSideBarOpen} />
+    <div className={`${darkMode && "dark"} font-quicksand bg-slate-200 h-screen flex overflow-hidden`}>
+      <Sidebar isSideBarOpen={isSideBarOpen} className="z-50 max-w-[200px]"  />
       
-      <div className="flex-1 relative">
+      <div className="flex-1 flex flex-col overflow-hidden">
         <Header toggleDarkMode={toggleDarkMode} darkMode={darkMode} toggleSideBar={toggleSideBar} />
 
-        {/* Display selected card content at top-left */}
-        {selectedCardContent && (
-          <div className="absolute top-0 left-0 p-4 bg-white z-50">
-            {selectedCardContent}
-          </div>
-        )}
+        <div className="flex-1 ml-[240px] overflow-auto">
+          {selectedCardContent && (
+            <div className="p-4 bg-white">
+              {selectedCardContent}
+            </div>
+          )}
 
-        <Main11>
-          <Content>
-            <Cards onCardClick={handleCardClick} />
-          </Content>
-        </Main11>
+          <Main11>
+            <Content>
+              <Cards onCardClick={handleCardClick} />
+            </Content>
+          </Main11>
+        </div>
       </div>
     </div>
   );
