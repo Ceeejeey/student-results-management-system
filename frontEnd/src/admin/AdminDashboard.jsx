@@ -4,6 +4,7 @@ import Main11 from "../ui/Main11";
 import Content from "../ui/Content";
 import { useState } from "react";
 import Cards from "../components/Cards/Cards";
+import Calender from "../components/Calender"
 
 const AdminDashboard = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -26,7 +27,7 @@ const AdminDashboard = () => {
     <div className={`${darkMode && "dark"} font-quicksand bg-slate-200 h-screen flex overflow-hidden`}>
       <Sidebar isSideBarOpen={isSideBarOpen} className="z-50 max-w-[200px]"  />
       
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex flex-col flex-1 overflow-hidden">
         <Header toggleDarkMode={toggleDarkMode} darkMode={darkMode} toggleSideBar={toggleSideBar} />
 
         <div className="flex-1 ml-[240px] overflow-auto">
@@ -39,7 +40,9 @@ const AdminDashboard = () => {
           <Main11>
             <Content>
               <Cards onCardClick={handleCardClick} />
+              
             </Content>
+            
           </Main11>
         </div>
       </div>
