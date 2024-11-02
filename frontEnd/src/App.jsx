@@ -3,12 +3,10 @@ import StudentDashbord from "./Student/StudentDashBord";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Main11 from "./ui/Main11";
-<<<<<<< Updated upstream
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-=======
+
 
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
->>>>>>> Stashed changes
+
 
 import './index.css';
 import Calendar from "./components/Calender";
