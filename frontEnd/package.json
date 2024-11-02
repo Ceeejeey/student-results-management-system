@@ -11,14 +11,12 @@
     "ev": "node server.js"
   },
   "dependencies": {
-<<<<<<< Updated upstream
-    "lucide-react": "^0.453.0",
-=======
     "@fullcalendar/daygrid": "^6.1.15",
     "@fullcalendar/interaction": "^6.1.15",
     "@fullcalendar/react": "^6.1.15",
     "@fullcalendar/timegrid": "^6.1.15",
->>>>>>> Stashed changes
+    "axios": "^1.7.7",
+    "lucide-react": "^0.453.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icon": "^1.0.0",
