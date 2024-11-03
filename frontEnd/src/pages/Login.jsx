@@ -30,84 +30,55 @@ function Login() {
     console.log('Login Data Submitted:', loginData);
 
 
-  const validateForm = () => {
-    if (!formData.email || !formData.password) {
-      setError('All fields are required');
-      return false;
-    }
-    if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      setError('Please enter a valid email address');
-      return false;
-    }
-    return true;
-  };
+    const validateForm = () => {
+      if (!formData.email || !formData.password) {
+        setError('All fields are required');
+        return false;
+      }
+      if (!/\S+@\S+\.\S+/.test(formData.email)) {
+        setError('Please enter a valid email address');
+        return false;
+      }
+      return true;
+    };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+    const handleSubmit = async (e) => {
+      e.preventDefault();
 
-    if (!validateForm()) return;
+      if (!validateForm()) return;
 
-    setIsLoading(true);
-    setError('');
+      setIsLoading(true);
+      setError('');
 
-    try {
+      try {
 
-      const response = await axios.post('http://localhost:3000/login', {
-        email: formData.email,
-        password: formData.password,
-      });
-
-      console.log(response);
-      // Check if response status is 201 for created
-    if (response.status === 200 && response.data === 'student') {
-      alert('Student logged in successfully');
-      navigate('/studentdashbord');
-    }
-    else{
-      alert('Teacher logged in successfully');
-      navigate('/admindashbord');
-    }
-    } catch (error) {
-      console.error('There was an error registering!', error);
-      alert('Registration failed!');
-    }
-
-
-    if (!passwordMatch) {
-      alert("Passwords do not match!");
-      return;
-    }
-    
-
-=======
-      // Replace this with your actual API call
-      const response = await fetch('your-api-endpoint/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
+        const response = await axios.post('http://localhost:3000/login', {
           email: formData.email,
           password: formData.password,
-        }),
-      });
+        });
 
-      if (!response.ok) {
-        throw new Error('Invalid credentials');
+        console.log(response);
+        // Check if response status is 201 for created
+        if (response.status === 200 && response.data === 'student') {
+          alert('Student logged in successfully');
+          navigate('/studentdashbord');
+        }
+        else {
+          alert('Teacher logged in successfully');
+          navigate('/admindashbord');
+        }
+      } catch (error) {
+        console.error('There was an error registering!', error);
+        alert('Registration failed!');
       }
 
-      const data = await response.json();
-      // Store the token securely
-      localStorage.setItem('token', data.token);
-      // Redirect to dashboard or home page
-      navigate('/dashboard');
-      
-    } catch (err) {
-      setError(err.message || 'Login failed. Please try again.');
-    } finally {
-      setIsLoading(false);
-    }
 
+      if (!passwordMatch) {
+        alert("Passwords do not match!");
+        return;
+      }
+
+    };
   };
 
   return (
@@ -167,12 +138,11 @@ function Login() {
             </a>
           </div>
 
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             disabled={isLoading}
-            className={`w-full p-[10px] bg-[#9c2b2b] text-white border-none rounded-[5px] text-base cursor-pointer transition-colors duration-300 hover:bg-[#45a049] ${
-              isLoading ? 'opacity-50 cursor-not-allowed' : ''
-            }`}
+            className={`w-full p-[10px] bg-[#9c2b2b] text-white border-none rounded-[5px] text-base cursor-pointer transition-colors duration-300 hover:bg-[#45a049] ${isLoading ? 'opacity-50 cursor-not-allowed' : ''
+              }`}
           >
             {isLoading ? 'Logging in...' : 'Login'}
           </button>
