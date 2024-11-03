@@ -1,19 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-import axios from 'axios';
-import './Registation.css';
-import logo from '../assets/OIP.jpeg'
-
 import logo from '../assets/OIP.jpeg';
 
-
-function Register() {
+function TeacherRegister() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    faculty: '',
-    regNo: '',
-    indexNo: '',
+    name: '',
+    subjectCode: '',
+    teacherId: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -33,29 +27,8 @@ function Register() {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Handle form submission logic here, e.g., form validation, sending data to the server
-    try {
-      const response = await axios.post('http://localhost:3000/register', {
-        faculty: formData.faculty,
-        regNo: formData.regNo,
-        indexNo: formData.indexNo,
-        password: formData.password,
-      });
-
-      console.log(response);
-      // Check if response status is 201 for created
-    if (response.status === 201) {
-      alert(response.data.message); 
-      navigate('/Login');
-    }
-    } catch (error) {
-      console.error('There was an error registering!', error);
-      alert('Registration failed!');
-    }
-
 
     if (!passwordMatch) {
       alert("Passwords do not match!");
@@ -64,7 +37,6 @@ function Register() {
 
     console.log('Form Data Submitted:', formData);
     // Add further processing (e.g., API call) here
-
   };
 
   return (
@@ -72,37 +44,34 @@ function Register() {
       <div className="w-[400px] p-[10px] border border-[#ddd] rounded-[10px] shadow-[0_4px_8px_rgba(0,0,0,0.1)] bg-[#f9f9f9]">
         <div className="flex items-center justify-center mb-2">
           <img className="w-[50px] mr-[9px]" src={logo} alt="Logo" />
-          <h2 className="text-center text-[#333] text-xl font-semibold">Student Registration</h2>
+          <h2 className="text-center text-[#333] text-xl font-semibold">Teacher Registration</h2>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Registration Number Field */}
           <div className="mb-[15px]">
-            <label htmlFor="regNo" className="block mb-[5px] font-bold text-[#333]">
-              Registration Number:
+            <label htmlFor="teacherId" className="block mb-[5px] font-bold text-[#333]">
+              Teacher ID:
             </label>
             <input
               type="text"
-              id="regNo"
-              name="regNo"
-              value={formData.regNo}
+              id="teacherId"
+              name="teacherId"
+              value={formData.teacherId}
               onChange={handleChange}
               required
-              placeholder="EUSL/TC/IS/20.../COM/..."
               className="w-full p-[10px] border border-[#ccc] rounded-[5px] text-base focus:outline-none focus:border-[#9c2b2b]"
             />
           </div>
 
-          {/* Other Fields */}
           <div className="mb-[15px]">
-            <label htmlFor="indexNo" className="block mb-[5px] font-bold text-[#333]">
-              Index Number:
+            <label htmlFor="subjectCode" className="block mb-[5px] font-bold text-[#333]">
+              Subject Code:
             </label>
             <input
               type="text"
-              id="indexNo"
-              name="indexNo"
-              value={formData.indexNo}
+              id="subjectCode"
+              name="subjectCode"
+              value={formData.subjectCode}
               onChange={handleChange}
               required
               className="w-full p-[10px] border border-[#ccc] rounded-[5px] text-base focus:outline-none focus:border-[#9c2b2b]"
@@ -124,7 +93,6 @@ function Register() {
             />
           </div>
 
-          {/* Password Fields */}
           <div className="mb-[15px]">
             <label htmlFor="password" className="block mb-[5px] font-bold text-[#333]">
               Password:
@@ -182,4 +150,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default TeacherRegister;
