@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import axios from 'axios';
+
+
 import logo from '../assets/OIP.jpeg';
 
 function TeacherRegister() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    name: '',
-    subjectCode: '',
+
     teacherId: '',
+    subjectCode: '',
     email: '',
     password: '',
-    confirmPassword: '',
-    phone: '',
+  
   });
   const [passwordMatch, setPasswordMatch] = useState(true);
 
@@ -27,8 +30,30 @@ function TeacherRegister() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Handle form submission logic here, e.g., form validation, sending data to the server
+    try {
+      const response = await axios.post('http://localhost:3000/teacher-register', {
+        teacherId: formData.teacherId,
+        subjectCode: formData.subjectCode,
+        email: formData.email,
+        password: formData.password,
+      });
+
+      console.log(response);
+      // Check if response status is 201 for created
+    if (response.status === 201) {
+      alert(response.data.message); 
+      navigate('/Login');
+    }
+    } catch (error) {
+      console.error('There was an error registering!', error);
+      alert('Registration failed!');
+    }
+
+
 
     if (!passwordMatch) {
       alert("Passwords do not match!");

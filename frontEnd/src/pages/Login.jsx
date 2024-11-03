@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+
+import axios from 'axios';
 import logo from '../assets/OIP.jpeg';
 import { useNavigate } from 'react-router-dom';
 
@@ -20,6 +22,14 @@ function Login() {
     if (error) setError('');
   };
 
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Handle login logic here, e.g., form validation, server request
+    console.log('Login Data Submitted:', loginData);
+
+
   const validateForm = () => {
     if (!formData.email || !formData.password) {
       setError('All fields are required');
@@ -34,12 +44,42 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!validateForm()) return;
 
     setIsLoading(true);
     setError('');
 
     try {
+
+      const response = await axios.post('http://localhost:3000/login', {
+        email: formData.email,
+        password: formData.password,
+      });
+
+      console.log(response);
+      // Check if response status is 201 for created
+    if (response.status === 200 && response.data === 'student') {
+      alert('Student logged in successfully');
+      navigate('/studentdashbord');
+    }
+    else{
+      alert('Teacher logged in successfully');
+      navigate('/admindashbord');
+    }
+    } catch (error) {
+      console.error('There was an error registering!', error);
+      alert('Registration failed!');
+    }
+
+
+    if (!passwordMatch) {
+      alert("Passwords do not match!");
+      return;
+    }
+    
+
+=======
       // Replace this with your actual API call
       const response = await fetch('your-api-endpoint/login', {
         method: 'POST',
@@ -67,6 +107,7 @@ function Login() {
     } finally {
       setIsLoading(false);
     }
+
   };
 
   return (
