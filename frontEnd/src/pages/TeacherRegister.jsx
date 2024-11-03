@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import axios from 'axios';
+
+
 import logo from '../assets/OIP.jpeg';
 
 function TeacherRegister() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
+
     teacherId: '',
     subjectCode: '',
     email: '',
     password: '',
-   
-    
+  
   });
   const [passwordMatch, setPasswordMatch] = useState(true);
 
@@ -49,6 +52,7 @@ function TeacherRegister() {
       console.error('There was an error registering!', error);
       alert('Registration failed!');
     }
+
 
 
     if (!passwordMatch) {

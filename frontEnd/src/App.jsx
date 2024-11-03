@@ -5,11 +5,17 @@ import Register from "./pages/Register";
 import Main11 from "./ui/Main11";
 
 
+
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+
+
+
 
 
 import './index.css';
 import Calendar from "./components/Calender";
+import SelectUser from "./selectUser/SelectUser";
+import TeacherRegister from "./pages/TeacherRegister";
 
 
 const App = () => {
@@ -22,7 +28,9 @@ const App = () => {
       
       
         <Routes>
-          <Route path="/" element={<Register />} />
+          <Route path="/" element={<SelectUser/>} />
+          <Route path="/student-registration" element={<Register />} />
+          <Route path="/teacher-registration" element={<TeacherRegister/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/admindashbord" element={<AdminDashboard className='h-screen bg-blue-500' />} />
           <Route path="/studentdashbord" element={<StudentDashbord />} />
