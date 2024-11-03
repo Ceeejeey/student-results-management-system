@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './Registation.css';
 import logo from '../assets/OIP.jpeg'
+
+
 
 function Register() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     
-    faculty: '',
+    
     regNo: '',
     indexNo: '',
     password: '',
     confirmPassword: ''
+    
   });
 
   const handleChange = (e) => {
@@ -27,9 +29,9 @@ function Register() {
     // Handle form submission logic here, e.g., form validation, sending data to the server
     try {
       const response = await axios.post('http://localhost:3000/register', {
-        faculty: formData.faculty,
         regNo: formData.regNo,
         indexNo: formData.indexNo,
+        email: formData.email,
         password: formData.password,
       });
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Login.css';
+import axios from 'axios';
 import logo from '../assets/OIP.jpeg';
 
 function Login() {
@@ -15,10 +15,45 @@ function Login() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     // Handle login logic here, e.g., form validation, server request
     console.log('Login Data Submitted:', loginData);
+
+    if (!validateForm()) return;
+
+    setIsLoading(true);
+    setError('');
+
+    try {
+      const response = await axios.post('http://localhost:3000/login', {
+        email: formData.email,
+        password: formData.password,
+      });
+
+      console.log(response);
+      // Check if response status is 201 for created
+    if (response.status === 200 && response.data === 'student') {
+      alert('Student logged in successfully');
+      navigate('/studentdashbord');
+    }
+    else{
+      alert('Teacher logged in successfully');
+      navigate('/admindashbord');
+    }
+    } catch (error) {
+      console.error('There was an error registering!', error);
+      alert('Registration failed!');
+    }
+
+
+    if (!passwordMatch) {
+      alert("Passwords do not match!");
+      return;
+    }
+    
+
   };
 
   return (
