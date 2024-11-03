@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import axios from 'axios';
 import logo from '../assets/OIP.jpeg';
 import { useNavigate } from 'react-router-dom';
@@ -22,13 +21,8 @@ function Login() {
     if (error) setError('');
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Handle login logic here, e.g., form validation, server request
-    console.log('Login Data Submitted:', loginData);
-
 
     const validateForm = () => {
       if (!formData.email || !formData.password) {
@@ -42,43 +36,33 @@ function Login() {
       return true;
     };
 
-    const handleSubmit = async (e) => {
-      e.preventDefault();
+    if (!validateForm()) return;
 
-      if (!validateForm()) return;
+    setIsLoading(true);
+    setError('');
+    
 
-      setIsLoading(true);
-      setError('');
+    try {
+      const response = await axios.post('http://localhost:3000/login', {
+        email: formData.email,
+        password: formData.password,
+      });
 
-      try {
-
-        const response = await axios.post('http://localhost:3000/login', {
-          email: formData.email,
-          password: formData.password,
-        });
-
-        console.log(response);
-        // Check if response status is 201 for created
-        if (response.status === 200 && response.data === 'student') {
-          alert('Student logged in successfully');
-          navigate('/studentdashbord');
-        }
-        else {
-          alert('Teacher logged in successfully');
-          navigate('/admindashbord');
-        }
-      } catch (error) {
-        console.error('There was an error registering!', error);
-        alert('Registration failed!');
+      console.log(response);
+      // Check if response status is 200 for success
+      if (response.status === 200 && response.data === 'student') {
+        alert('Student logged in successfully');
+        navigate('/studentdashbord');
+      } else {
+        alert('Teacher logged in successfully');
+        navigate('/admindashbord');
       }
-
-
-      if (!passwordMatch) {
-        alert("Passwords do not match!");
-        return;
-      }
-
-    };
+    } catch (error) {
+      console.error('There was an error logging in!', error);
+      alert('Login failed!');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
