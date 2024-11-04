@@ -42,7 +42,7 @@ function TeacherRegister() {
         password: formData.password,
       });
 
-      console.log(response);
+      
       // Check if response status is 201 for created
     if (response.status === 201) {
       alert(response.data.message); 

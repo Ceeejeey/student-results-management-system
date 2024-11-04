@@ -66,9 +66,9 @@ function Login() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-50">
+    <div className="flex items-center justify-center min-h-screen bg-gray-50">
       <div className="w-[400px] p-[10px] border border-[#ddd] rounded-[10px] shadow-[0_4px_8px_rgba(0,0,0,0.1)] bg-[#f9f9f9]">
-        <div className="flex justify-center items-center mb-2">
+        <div className="flex items-center justify-center mb-2">
           <img className="w-[50px] mr-[9px]" src={logo} alt="" />
           <h1 className="text-center text-[#333] text-xl font-semibold">Login</h1>
         </div>
@@ -131,7 +131,7 @@ function Login() {
             {isLoading ? 'Logging in...' : 'Login'}
           </button>
 
-          <div className="text-center mt-4">
+          <div className="mt-4 text-center">
             <span className="text-[#333] text-sm">Don't have an account? </span>
             <a href="/" className="text-[#9c2b2b] hover:underline text-sm">
               Register here

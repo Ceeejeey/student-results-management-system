@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import axios from 'axios';
 import logo from '../assets/OIP.jpeg'
-
-
-
 
 
 function Register() {
@@ -39,17 +35,19 @@ function Register() {
     // Handle form submission logic here, e.g., form validation, sending data to the server
     try {
       const response = await axios.post('http://localhost:3000/register', {
+
         regNo: formData.regNo,
         indexNo: formData.indexNo,
         email: formData.email,
         password: formData.password,
+        
       });
 
       console.log(response);
       // Check if response status is 201 for created
     if (response.status === 201) {
       alert(response.data.message); 
-      navigate('/Login');
+      navigate('/login');
     }
     } catch (error) {
       console.error('There was an error registering!', error);
