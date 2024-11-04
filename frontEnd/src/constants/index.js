@@ -16,30 +16,7 @@ import image1 from "../assets/image1.jpg";
 
 export const links = [
   {
-    href: "/admindashbord",
-    icon: FaChartBar,
-    text: "Dashboard",
-  },
-  {
-    href: "#",
-    icon: FaCalendarAlt,
-    text: "Calendar",
-  },
-
-  {
-    href: "#",
-    icon: FaUsersCog,
-    text: "Admins",
-  },
-
-  {
-    href: "#",
-    icon: IoIosLogIn,
-    text: "Sign In",
-  },
-
-  {
-    href: "#",
+    href: "/",
     icon: IoIosLogOut,
     text: "Sign Up",
   },

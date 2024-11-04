@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Content = ({ children }) => {
   return (
-    <div className="flex-1 flex flex-col gap-5 overflow-auto">
+    <div className="flex flex-col flex-1 gap-5 overflow-auto">
       {children}
     </div>
   );

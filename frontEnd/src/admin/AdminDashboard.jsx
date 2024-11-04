@@ -30,16 +30,16 @@ const AdminDashboard = () => {
       <div className="flex flex-col flex-1 overflow-hidden">
         <Header toggleDarkMode={toggleDarkMode} darkMode={darkMode} toggleSideBar={toggleSideBar} />
 
-        <div className="flex-1 ml-[240px] overflow-auto">
+        <div className="flex-1 ml-[240px] overflow-auto ">
           {selectedCardContent && (
             <div className="p-4 bg-white">
               {selectedCardContent}
             </div>
           )}
 
-          <Main11>
-            <Content>
-              <Cards onCardClick={handleCardClick} />
+          <Main11 >
+            <Content >
+              <Cards onCardClick={handleCardClick} className="pl-12"/>
               
             </Content>
             
