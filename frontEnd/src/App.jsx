@@ -17,7 +17,7 @@ import Calendar from "./components/Calender";
 import SelectUser from "./selectUser/SelectUser";
 import TeacherRegister from "./pages/TeacherRegister";
 import StudentDash from "./Student/StudentDash";
-
+import AIAnalyzer from './Student/aiAnalyzer/AIAnalyzer';
 
 const App = () => {
 
@@ -36,7 +36,8 @@ const App = () => {
           <Route path="/admindashbord" element={<AdminDashboard className='h-screen bg-blue-500' />} />
           <Route path="/studentdashbord" element={<StudentDash/>} />
           <Route path="/main" element={<Main11/>}/>
-         
+          <Route path="/ai" element={<AIAnalyzer />} />
+
           
       
         </Routes>
