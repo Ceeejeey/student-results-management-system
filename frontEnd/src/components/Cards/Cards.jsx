@@ -63,20 +63,8 @@ const StudentInfo = () => {
           </button>
         </div>
 
-        {/* Faculty Filter */}
-        <select
-          value={selectedFaculty}
-          onChange={(e) => setSelectedFaculty(e.target.value)}
-          className="p-2 border rounded-lg w-64 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          {faculties.map(faculty => (
-            <option key={faculty} value={faculty}>
-              {faculty === "all" ? "All Faculties" : faculty}
-            </option>
-          ))}
-        </select>
-
-        {/* Students List */}
+       
+      {/* Students List */}
         <div className="grid gap-4 ">
           {filteredStudents.map(student => (
             <CustomCard key={student.id}>
