@@ -13,30 +13,41 @@ const StudentDashBord = () => {
 
   // Sample student data
   const studentData = {
-    name: "John Doe",
-    rollNo: "20CS001",
+    name: "H.T Lakshan",
+    IndexNO: "19/COM/330",
     branch: "Computer Science",
     results: {
       "1.1": {
-        gpa: 8.5,
+        gpa: 2.5,
         subjects: [
-          { name: "Mathematics-1", grade: "A", credits: 4 },
-          { name: "Physics", grade: "A+", credits: 4 },
-          { name: "Programming Fundamentals", grade: "A", credits: 3 },
-          { name: "English", grade: "B+", credits: 2 },
+          { name: "GEP-I General English Proficiency -I", grade: "A", credits: 1 },
+          { name: "CO1126 Management Information System", grade: "A+", credits: 0 },
+          { name: "CO1115 Practical work on CO1125", grade: "A", credits: 1 },
+          { name: "CO1125 Statistics for Science and Technology", grade: "B+", credits: 2 },
+          { name: "CO1114 Practical work on CO1124", grade: "B+", credits: 1 },
+          { name: "CO1124 Computer System and PC Application", grade: "B+", credits: 2 },
+          { name: "CO1123 Formal Methods for Problem Solving", grade: "B+", credits: 2 },
+          { name: "CO1112 Practical work on CO1122", grade: "B+", credits: 1 },
+          { name: "CO1122 Basic Computer Programming", grade: "B+", credits: 2 },
+          { name: "CO1121 Basic Mathematics for Computing", grade: "B+", credits: 2 },
         ]
       },
       "1.2": {
-        gpa: 8.7,
+        gpa: 2.1,
         subjects: [
-          { name: "Mathematics-2", grade: "A+", credits: 4 },
-          { name: "Chemistry", grade: "A", credits: 4 },
-          { name: "Data Structures", grade: "A", credits: 3 },
-          { name: "Professional Ethics", grade: "A", credits: 2 },
+          { name: "CO1226 Social Harmony", grade: "A+", credits: 2 },
+          { name: "CO1225 Computer Architecture", grade: "A", credits: 2 },
+          { name: "CO1224 Multimedia & Hypermedia Development", grade: "A", credits: 2 },
+          { name: "CO1223 Database Management System", grade: "A", credits: 3 },
+          { name: "CO1212 Practical work on CO1222", grade: "A", credits: 1 },
+          { name: "CO1222 Data Structures and Algorithms", grade: "A", credits: 2 },
+          { name: "CO1221 System Analysis & Design", grade: "A", credits: 2 },
+          { name: "CO1214 Practical work on CO1224", grade: "A", credits: 1 },
+          { name: "CO1213 Practical work on CO1223", grade: "A", credits: 1 },
         ]
       },
       "2.1": {
-        gpa: 8.9,
+        gpa: 3.2,
         subjects: [
           { name: "Database Systems", grade: "A+", credits: 4 },
           { name: "Computer Networks", grade: "A", credits: 4 },
@@ -117,7 +128,7 @@ const StudentDashBord = () => {
                   <div className="flex flex-col items-start justify-between md:flex-row md:items-center">
                     <div>
                       <h1 className="text-2xl font-bold text-gray-800">{studentData.name}</h1>
-                      <p className="text-gray-500">Roll No: {studentData.rollNo}</p>
+                      <p className="text-gray-500">IndexNO: {studentData.IndexNO}</p>
                     </div>
                     <div className="flex items-center mt-4 md:mt-0">
                       <svg className="w-6 h-6 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">

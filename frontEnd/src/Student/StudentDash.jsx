@@ -23,19 +23,19 @@ const StudentDash = () => {
   };
 
   return (
-    <div className={`${darkMode && "dark"} font-quicksand bg-slate-200 h-screen flex overflow-hidden`}>
+    <div className={`${darkMode && "dark"} font-quicksand bg-slate-200 h-screen flex-1 overflow-hidden `}>
       <StudentSideBar isSideBarOpen={isSideBarOpen} className="z-50 max-w-[200px]"/>
       
-      <div className="flex flex-col flex-1 overflow-hidden">
+      <div className="flex flex-col flex-1 overflow-hidden  ">
         <StudentHeader toggleDarkMode={toggleDarkMode} darkMode={darkMode} toggleSideBar={toggleSideBar}/>
 
-        <div className=" fixed overflow-auto w-[100%]">
+        <div className=" fixed overflow-auto w-[100%] ">
           
 
          
             
             
-               <StudentDashBord onCardClick={handleCardClick} className="pl-12"/>
+               <StudentDashBord onCardClick={handleCardClick} className="pl-12 h-full "/>
            
 
           
