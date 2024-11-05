@@ -54,8 +54,8 @@ const ResultsInfo = () => {
   const [selectedYear, setSelectedYear] = useState("19/20");
   const [selectedSemester, setSelectedSemester] = useState("1.1");
   const [resultsData, setResultsData] = useState({
-    "CS19001": {
-      name: "John Doe",
+    "19/COM/330": {
+      name: "H.T. Lakshan",
       year: "19/20",
       results: {
         "1.1": [
@@ -259,13 +259,13 @@ const ResultsInfo = () => {
                 </thead>
                 <tbody>
                   <tr className="border-b">
-                    <td>regNo</td>
-                    <td>CS19001</td>
-                    <td>2 letters followed by 5 digits</td>
+                    <td>IndexNo</td>
+                    <td>19/COM/48</td>
+                    <td>3 letters followed by 5 digits</td>
                   </tr>
                   <tr className="border-b">
                     <td>name</td>
-                    <td>John Doe</td>
+                    <td>H.T. Lakshan</td>
                     <td>Student's full name</td>
                   </tr>
                   <tr className="border-b">
