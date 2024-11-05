@@ -1,0 +1,26 @@
+{
+    "name": "John Doe",
+    "rollNo": "20CS001",
+    "branch": "Computer Science",
+    "results": {
+      "1.1": {
+        "gpa": 8.5,
+        "subjects": [
+          { "name": "Mathematics-1", "grade": "A", "credits": 4 },
+          { "name": "Physics", "grade": "A+", "credits": 4 },
+          { "name": "Programming Fundamentals", "grade": "A", "credits": 3 },
+          { "name": "English", "grade": "B+", "credits": 2 }
+        ]
+      },
+      "1.2": {
+        "gpa": 8.7,
+        "subjects": [
+          { "name": "Mathematics-2", "grade": "A+", "credits": 4 },
+          { "name": "Chemistry", "grade": "A", "credits": 4 },
+          { "name": "Data Structures", "grade": "A", "credits": 3 },
+          { "name": "Professional Ethics", "grade": "A", "credits": 2 }
+        ]
+      }
+    }
+  }
+  
