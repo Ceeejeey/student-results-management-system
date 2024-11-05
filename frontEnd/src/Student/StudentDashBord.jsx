@@ -56,7 +56,7 @@ const StudentDashBord = () => {
         ]
       },
       "2.2": {
-        gpa: 8.6,
+        gpa: 2.6,
         subjects: [
           { name: "Web Technologies", grade: "A", credits: 4 },
           { name: "Software Engineering", grade: "A+", credits: 4 },
@@ -65,7 +65,7 @@ const StudentDashBord = () => {
         ]
       },
       "3.1": {
-        gpa: 9.0,
+        gpa: 3.3,
         subjects: [
           { name: "Artificial Intelligence", grade: "A+", credits: 4 },
           { name: "Cyber Security", grade: "A", credits: 4 },
@@ -74,7 +74,7 @@ const StudentDashBord = () => {
         ]
       },
       "3.2": {
-        gpa: 8.8,
+        gpa: 2.1,
         subjects: [
           { name: "Deep Learning", grade: "A", credits: 4 },
           { name: "Blockchain", grade: "A+", credits: 4 },

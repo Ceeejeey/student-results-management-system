@@ -2,6 +2,8 @@ import { useState } from "react";
 import StudentSideBar from "./studentSideBar/StudentSideBar";
 import StudentHeader from "./studentHeader/StudentHeader";
 import StudentDashBord from "./StudentDashBord";
+import Main11 from "../ui/Main11";
+import Content from "../ui/Content";
 
 
 
@@ -26,7 +28,7 @@ const StudentDash = () => {
     <div className={`${darkMode && "dark"} font-quicksand bg-slate-200 h-screen flex-1 overflow-hidden `}>
       <StudentSideBar isSideBarOpen={isSideBarOpen} className="z-50 max-w-[200px]"/>
       
-      <div className="flex flex-col flex-1 overflow-hidden  ">
+      <div className="flex flex-col flex-1 overflow-hidden ">
         <StudentHeader toggleDarkMode={toggleDarkMode} darkMode={darkMode} toggleSideBar={toggleSideBar}/>
 
         <div className=" fixed overflow-auto w-[100%] ">
@@ -35,7 +37,11 @@ const StudentDash = () => {
          
             
             
-               <StudentDashBord onCardClick={handleCardClick} className="pl-12 h-full "/>
+               
+                
+                  <StudentDashBord onCardClick={handleCardClick} className="h-full pl-12 "/>
+                
+             
            
 
           
