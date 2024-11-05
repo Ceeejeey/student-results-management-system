@@ -7,10 +7,10 @@ const Modal = ({ isOpen, onClose, title, children, onConfirm }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white rounded-lg max-w-4xl max-h-[80vh] overflow-auto w-full m-4">
         <div className="p-4 border-b">
-          <div className="flex justify-between items-center">
+          <div className="flex items-center justify-between">
             <h2 className="text-xl font-semibold">{title}</h2>
             <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
               <X className="w-5 h-5" />
@@ -20,16 +20,16 @@ const Modal = ({ isOpen, onClose, title, children, onConfirm }) => {
         <div className="p-4">
           {children}
         </div>
-        <div className="p-4 border-t flex justify-end gap-2">
+        <div className="flex justify-end gap-2 p-4 border-t">
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 text-gray-700"
+            className="px-4 py-2 text-gray-700 bg-gray-200 rounded hover:bg-gray-300"
           >
             Cancel
           </button>
           <button
             onClick={onConfirm}
-            className="px-4 py-2 rounded bg-blue-600 hover:bg-blue-700 text-white"
+            className="px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700"
           >
             Import Data
           </button>
@@ -212,13 +212,13 @@ const ResultsInfo = () => {
   return (
     <div className="p-6">
       <div className="flex flex-col gap-6">
-        <h3 className="text-2xl font-semibold mb-4">Student Results</h3>
+        <h3 className="mb-4 text-2xl font-semibold">Student Results</h3>
 
         {/* Excel Upload Section */}
         <CustomCard className="p-4">
           <div className="flex flex-col items-center gap-4">
             <div className="flex justify-between w-full">
-              <h4 className="font-semibold text-lg">Upload Results from Excel</h4>
+              <h4 className="text-lg font-semibold">Upload Results from Excel</h4>
               <div className="flex gap-2">
                 <button
                   onClick={downloadTemplate}
@@ -230,7 +230,7 @@ const ResultsInfo = () => {
               </div>
             </div>
 
-            <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 w-full text-center relative">
+            <div className="relative w-full p-8 text-center border-2 border-gray-300 border-dashed rounded-lg">
               <div className="flex flex-col items-center gap-2">
                 <Upload className="w-12 h-12 text-gray-400" />
                 <p className="text-gray-600">Drop your Excel file here or click to browse</p>
@@ -247,14 +247,14 @@ const ResultsInfo = () => {
               <div className="text-red-500 whitespace-pre-line">{uploadError}</div>
             )}
 
-            <div className="bg-gray-50 p-4 rounded-lg w-full">
-              <h5 className="font-medium mb-2">Expected Excel Format:</h5>
+            <div className="w-full p-4 rounded-lg bg-gray-50">
+              <h5 className="mb-2 font-medium">Expected Excel Format:</h5>
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b">
-                    <th className="text-left py-2">Column</th>
-                    <th className="text-left py-2">Example</th>
-                    <th className="text-left py-2">Description</th>
+                    <th className="py-2 text-left">Column</th>
+                    <th className="py-2 text-left">Example</th>
+                    <th className="py-2 text-left">Description</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -338,14 +338,14 @@ const ResultsInfo = () => {
             .map(([regNo, student]) => (
               <CustomCard key={regNo}>
                 <div className="p-4">
-                  <div className="flex justify-between items-center mb-4">
+                  <div className="flex items-center justify-between mb-4">
                     <div>
-                      <h4 className="font-semibold text-lg">{student.name}</h4>
+                      <h4 className="text-lg font-semibold">{student.name}</h4>
                       <p className="text-gray-600">Reg No: {regNo}</p>
                     </div>
                     {student.results[selectedSemester] && (
                       <div className="text-right">
-                        <p className="text-green-600 font-bold">
+                        <p className="font-bold text-green-600">
                           GPA: {calculateGPA(student.results[selectedSemester])}
                         </p>
                       </div>
@@ -357,17 +357,17 @@ const ResultsInfo = () => {
                       <table className="w-full">
                         <thead>
                           <tr className="border-b">
-                            <th className="text-left py-2">Subject</th>
-                            <th className="text-center py-2">Credits</th>
-                            <th className="text-right py-2">Grade</th>
+                            <th className="py-2 text-left">Subject</th>
+                            <th className="py-2 text-center">Credits</th>
+                            <th className="py-2 text-right">Grade</th>
                           </tr>
                         </thead>
                         <tbody>
                           {student.results[selectedSemester].map((result, index) => (
                             <tr key={index} className="border-b">
                               <td className="py-2">{result.subject}</td>
-                              <td className="text-center py-2">{result.credits}</td>
-                              <td className="text-right py-2">
+                              <td className="py-2 text-center">{result.credits}</td>
+                              <td className="py-2 text-right">
                                 <span className={`inline-block px-2 py-1 rounded ${result.grade.startsWith('A') ? 'bg-green-100 text-green-800' :
                                   result.grade.startsWith('B') ? 'bg-blue-100 text-blue-800' :
                                     result.grade.startsWith('C') ? 'bg-yellow-100 text-yellow-800' :
@@ -407,7 +407,7 @@ const ResultsInfo = () => {
                 <thead>
                   <tr>
                     {Object.keys(previewData[0]).map(key => (
-                      <th key={key} className="text-left p-2 border-b">{key}</th>
+                      <th key={key} className="p-2 text-left border-b">{key}</th>
                     ))}
                   </tr>
                 </thead>
