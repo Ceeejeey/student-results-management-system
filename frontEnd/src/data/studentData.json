@@ -1,12 +1,12 @@
 {
-    "name": "John Doe",
-    "rollNo": "20CS001",
+    "name": "H.T Lakshan",
+    "indexNO": "19/COM/330",
     "branch": "Computer Science",
     "results": {
       "1.1": {
-        "gpa": 8.5,
+        "gpa": 2.5,
         "subjects": [
-          { "name": "Mathematics-1", "grade": "A", "credits": 4 },
+          { "name": " Mathematics-1 ", "grade": "A", "credits": 4 },
           { "name": "Physics", "grade": "A+", "credits": 4 },
           { "name": "Programming Fundamentals", "grade": "A", "credits": 3 },
           { "name": "English", "grade": "B+", "credits": 2 }

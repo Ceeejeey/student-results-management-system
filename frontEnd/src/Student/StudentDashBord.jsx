@@ -44,14 +44,12 @@ const StudentDashBord = () => {
               <div className="min-h-screen p-4 bg-gray-50 md:p-8">
                 <div className="p-6 mb-8 bg-white rounded-lg shadow-md">
 
-                  <h1 className="text-2xl font-bold text-gray-800">{studentData.name}</h1>
-                  <p className="text-gray-500">Roll No: {studentData.rollNo}</p>
-                  <p className="font-medium text-gray-700">{studentData.branch}</p>
+                  
 
                   <div className="flex flex-col items-start justify-between md:flex-row md:items-center">
                     <div>
                       <h1 className="text-2xl font-bold text-gray-800">{studentData.name}</h1>
-                      <p className="text-gray-500">IndexNO: {studentData.IndexNO}</p>
+                      <p className="text-gray-500">IndexNO: {studentData.indexNO}</p>
                     </div>
                     <div className="flex items-center mt-4 md:mt-0">
                       <svg className="w-6 h-6 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
