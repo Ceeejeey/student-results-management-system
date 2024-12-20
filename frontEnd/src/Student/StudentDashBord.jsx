@@ -43,9 +43,6 @@ const StudentDashBord = () => {
             <Content>
               <div className="min-h-screen p-4 bg-gray-50 md:p-8">
                 <div className="p-6 mb-8 bg-white rounded-lg shadow-md">
-
-                  
-
                   <div className="flex flex-col items-start justify-between md:flex-row md:items-center">
                     <div>
                       <h1 className="text-2xl font-bold text-gray-800">{studentData.name}</h1>
@@ -58,7 +55,8 @@ const StudentDashBord = () => {
                       <span className="font-medium text-gray-700">{studentData.branch}</span>
                     </div>
                   </div>
-
+                
+                
                 </div>
 
                 <div className="mb-8 overflow-x-auto">

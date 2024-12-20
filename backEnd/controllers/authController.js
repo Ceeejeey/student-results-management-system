@@ -7,17 +7,18 @@ const bcrypt = require("bcryptjs");
 //register a student
 
 router.post("/register", async (req, res) => {
-  const { regNo, indexNo, email, password } = req.body;
+  const { regNo, indexNo, email, batch, password } = req.body;
   console.log("Received data:", req.body);
 
   const hashedPassword = await bcrypt.hash(password, 10);
   const query =
-    "INSERT INTO students (reg_no, index_no, email, password) VALUES (?, ?, ?, ?)";
+    "INSERT INTO students (reg_no, index_no, batch, email, password) VALUES (?, ?, ?, ?, ?)";
 
   try {
     const [results] = await pool.query(query, [
       regNo,
       indexNo,
+      batch,
       email,
       hashedPassword,
     ]);
