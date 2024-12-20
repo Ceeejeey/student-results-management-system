@@ -11,6 +11,7 @@ const StudentDashBord = () => {
   const [selectedCardContent, setSelectedCardContent] = useState(null);
   const [activeSemester, setActiveSemester] = useState('1.1');
 
+
   const getGradeColor = (grade) => {
     switch (grade) {
       case 'A+': return 'bg-green-100 text-green-800';
@@ -42,6 +43,7 @@ const StudentDashBord = () => {
             <Content>
               <div className="min-h-screen p-4 bg-gray-50 md:p-8">
                 <div className="p-6 mb-8 bg-white rounded-lg shadow-md">
+
                   <h1 className="text-2xl font-bold text-gray-800">{studentData.name}</h1>
                   <p className="text-gray-500">Roll No: {studentData.rollNo}</p>
                   <p className="font-medium text-gray-700">{studentData.branch}</p>
