@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import logo from '../assets/OIP.jpeg'
-
+import logo from '../assets/OIP.jpeg';
 
 function Register() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-
-    
     regNo: '',
     indexNo: '',
     email: '',
     password: '',
- 
+    confirmPassword: '',
+    batch: '', // Added batch field
   });
   const [passwordMatch, setPasswordMatch] = useState(true);
 
@@ -24,7 +22,7 @@ function Register() {
       [name]: value,
     }));
 
-    if (name === "password" || name === "confirmPassword") {
+    if (name === 'password' || name === 'confirmPassword') {
       setPasswordMatch(formData.password === value || formData.confirmPassword === value);
     }
   };
@@ -32,37 +30,28 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Handle form submission logic here, e.g., form validation, sending data to the server
+    if (!passwordMatch) {
+      alert('Passwords do not match!');
+      return;
+    }
+
     try {
       const response = await axios.post('http://localhost:3000/register', {
-
         regNo: formData.regNo,
         indexNo: formData.indexNo,
         email: formData.email,
         password: formData.password,
-        
+        batch: formData.batch, // Send batch to the backend
       });
 
-      console.log(response);
-      // Check if response status is 201 for created
-    if (response.status === 201) {
-      alert(response.data.message); 
-      navigate('/login');
-    }
+      if (response.status === 201) {
+        alert(response.data.message);
+        navigate('/login');
+      }
     } catch (error) {
       console.error('There was an error registering!', error);
       alert('Registration failed!');
     }
-
-
-    if (!passwordMatch) {
-      alert("Passwords do not match!");
-      return;
-    }
-
-    console.log('Form Data Submitted:', formData);
-    // Add further processing (e.g., API call) here
-
   };
 
   return (
@@ -91,7 +80,7 @@ function Register() {
             />
           </div>
 
-          {/* Other Fields */}
+          {/* Index Number Field */}
           <div className="mb-[15px]">
             <label htmlFor="indexNo" className="block mb-[5px] font-bold text-[#333]">
               Index Number:
@@ -107,6 +96,7 @@ function Register() {
             />
           </div>
 
+          {/* Email Field */}
           <div className="mb-[15px]">
             <label htmlFor="email" className="block mb-[5px] font-bold text-[#333]">
               Email:
@@ -120,6 +110,31 @@ function Register() {
               required
               className="w-full p-[10px] border border-[#ccc] rounded-[5px] text-base focus:outline-none focus:border-[#9c2b2b]"
             />
+          </div>
+
+          {/* Batch Dropdown */}
+          <div className="mb-[15px]">
+            <label htmlFor="batch" className="block mb-[5px] font-bold text-[#333]">
+              Batch:
+            </label>
+            <select
+              id="batch"
+              name="batch"
+              value={formData.batch}
+              onChange={handleChange}
+              required
+              className="w-full p-[10px] border border-[#ccc] rounded-[5px] text-base focus:outline-none focus:border-[#9c2b2b]"
+            >
+              <option value="" disabled>
+                Select Batch
+              </option>
+              <option value="2017/2018">2020/2021</option>
+              <option value="2018/2019">2020/2021</option>
+              <option value="2019/2020">2019/2020</option>
+              <option value="2020/2021">2020/2021</option>
+              <option value="2021/2022">2021/2022</option>
+              <option value="2022/2023">2022/2023</option>
+            </select>
           </div>
 
           {/* Password Fields */}
@@ -156,8 +171,8 @@ function Register() {
             )}
           </div>
 
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             className="w-full p-[10px] bg-[#9c2b2b] text-white border-none rounded-[5px] text-base cursor-pointer transition-colors duration-300 hover:bg-[#871d1d]"
           >
             Register
@@ -167,7 +182,7 @@ function Register() {
         <div className="mt-4 text-center">
           <p className="text-sm text-gray-600">
             Already have an account?{' '}
-            <span 
+            <span
               onClick={() => navigate('/login')}
               className="text-blue-600 cursor-pointer hover:underline"
             >

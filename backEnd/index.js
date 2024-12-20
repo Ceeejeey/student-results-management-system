@@ -14,7 +14,7 @@ const app = express();
 app.use(
   cors({
     origin: "http://localhost:5173",
-    methods: ["POST", "GET"],
+    methods: ["POST", "GET", "DELETE"],
     credentials: true,
   })
 );
@@ -23,6 +23,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use("/", require("./controllers/authController"));
+app.use("/api", require("./admin/getStudents"));
+app.use("/api", require("./admin/getResults"));
 
 // Initialize Google Generative AI
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);

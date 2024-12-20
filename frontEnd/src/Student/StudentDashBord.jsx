@@ -45,6 +45,20 @@ const StudentDashBord = () => {
                   <h1 className="text-2xl font-bold text-gray-800">{studentData.name}</h1>
                   <p className="text-gray-500">Roll No: {studentData.rollNo}</p>
                   <p className="font-medium text-gray-700">{studentData.branch}</p>
+                  <div className="flex flex-col items-start justify-between md:flex-row md:items-center">
+                    <div>
+                      <h1 className="text-2xl font-bold text-gray-800">{studentData.name}</h1>
+                      <p className="text-gray-500">IndexNO: {studentData.IndexNO}</p>
+                    </div>
+                    <div className="flex items-center mt-4 md:mt-0">
+                      <svg className="w-6 h-6 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 6.94c-.96.43-1.96.78-3 1.06A3.99 3.99 0 0014 6c-2.21 0-4 1.79-4 4v1c-3.87 0-7-3.13-7-7m14 8v2.5c0 .83-.67 1.5-1.5 1.5H9.5c-.83 0-1.5-.67-1.5-1.5V12" />
+                      </svg>
+                      <span className="font-medium text-gray-700">{studentData.branch}</span>
+                    </div>
+                  </div>
+                
+                
                 </div>
 
                 <div className="mb-8 overflow-x-auto">
