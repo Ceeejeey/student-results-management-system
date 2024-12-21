@@ -24,6 +24,7 @@ app.use("/", require("./controllers/authController"));
 
 app.use("/api", require("./admin/getStudents"));
 app.use("/api", require("./admin/getResults"));
+app.use("/api", require("./student/studentDetails"));
 
 // Initialize Google Generative AI
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
