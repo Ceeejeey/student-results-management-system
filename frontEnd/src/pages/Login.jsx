@@ -50,13 +50,17 @@ function Login() {
 
       console.log(response);
       // Check if response status is 200 for success
-      if (response.status === 200 && response.data === 'student') {
-        alert('Student logged in successfully');
-        navigate('/studentdashbord');
-      } else {
-        alert('Teacher logged in successfully');
-        navigate('/admindashbord');
+      if (response.status === 200) {
+        const { userType, token } = response.data;
+        localStorage.setItem("token", token);
+      
+        if (userType === "student") {
+          navigate("/studentdashbord");
+        } else {
+          navigate("/admindashbord");
+        }
       }
+      
     } catch (error) {
       console.error('There was an error logging in!', error);
       alert('Login failed!');

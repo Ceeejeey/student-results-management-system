@@ -56,12 +56,12 @@ const ResultsInfo = () => {
   const [showPreviewModal, setShowPreviewModal] = useState(false);
   const [uploadError, setUploadError] = useState("");
   const [previewData, setPreviewData] = useState(null);
-  const [selectedYear, setSelectedYear] = useState("19/20");
+  const [selectedYear, setSelectedYear] = useState("2018/2019");
   const [selectedSemester, setSelectedSemester] = useState("1.1");
   const [resultsData, setResultsData] = useState([]);
 
   const semesters = ["1.1", "1.2", "2.1", "2.2", "3.1", "3.2"];
-  const years = ["19/20", "20/21"];
+  const years = ["2018/2019", "2019/2020", "2020/2021", "2021/2022", "2022/2023"];
 
 
   useEffect(() => {
@@ -96,27 +96,28 @@ const ResultsInfo = () => {
   const validateExcelData = (data) => {
     const errors = [];
     data.forEach((row, index) => {
-      if (!row.regNo || !/^[A-Z]{2}\d{5}$/.test(row.regNo)) {
-        errors.push(`Row ${index + 1}: Invalid registration number`);
+      if (!row.regNo || !/^EUSL\/TC\/[A-Z]{2}\/\d{4}\/[A-Z]{3}\/\d{2}$/.test(row.regNo)) {
+        errors.push(`Row ${index + 1}: Invalid registration number (e.g., EUSL/TC/IS/2021/COM/41)`);
       }
-      if (!row.indexNo || isNaN(row.indexNo)) {
-        errors.push(`Row ${index + 1}: Missing or invalid index number`);
+      if (!row.indexNo || !/^\d{4}[a-zA-Z]+\d+$/.test(row.indexNo)) {
+        errors.push(`Row ${index + 1}: Missing or invalid index number (e.g., 2021com493)`);
       }
       if (!row.subject) {
         errors.push(`Row ${index + 1}: Missing subject`);
       }
-      if (!row.grade) {
-        errors.push(`Row ${index + 1}: Missing grade`);
+      if (!row.grade || !/^[A-F]$/.test(row.grade)) {
+        errors.push(`Row ${index + 1}: Missing or invalid grade (A-F only)`);
       }
-      if (!row.year || !/^\d{2}\/\d{2}$/.test(row.year)) {
-        errors.push(`Row ${index + 1}: Invalid year format`);
+      if (!row.year || !/^\d{4}\/\d{4}$/.test(row.year)) {
+        errors.push(`Row ${index + 1}: Invalid year format (e.g., 2021/2022)`);
       }
-      if (!row.semester) {
-        errors.push(`Row ${index + 1}: Missing semester`);
+      if (!row.semester || !/^\d\.\d$/.test(row.semester)) {
+        errors.push(`Row ${index + 1}: Missing or invalid semester (e.g., 1.1, 2.2)`);
       }
     });
     return errors;
   };
+  
 
   // Function to process Excel data
   const processExcelData = async (data) => {
@@ -136,11 +137,11 @@ const ResultsInfo = () => {
   const downloadTemplate = () => {
     const template = [
       {
-        regNo: 'CS23001',
-        indexNo: 1,
-        subject: 'Mathematics',
+        regNo: 'EUSL/TC/IS/2021/COM/41',
+        indexNo: '2021com493',
+        subject: 'CO1121',
         grade: 'A',
-        year: '23/24',
+        year: '2021/2022',
         semester: '1.1',
       }
     ];
