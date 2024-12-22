@@ -1,5 +1,4 @@
 import AdminDashboard from "./admin/AdminDashboard";
-import StudentDashbord from "./Student/StudentDashBord";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Main11 from "./ui/Main11";
