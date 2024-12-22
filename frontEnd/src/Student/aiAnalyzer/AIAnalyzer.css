@@ -1,97 +1,242 @@
 /* General Body Styles */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f7fc;
-    margin: 0;
-    padding: 0;
-    color: #333;
-  }
-  
-  /* Centering the main content */
-  .analysis-result {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    animation: fadeIn 0.5s ease-in;
-  }
-  
-  /* Heading styles */
-  h3 {
-    font-size: 24px;
-    font-weight: 600;
-    color: #1e2a47;
-    margin-bottom: 20px;
-  }
-  
-  h4 {
-    font-size: 20px;
-    color: #3f4a73;
-    margin-bottom: 12px;
-  }
-  
-  p {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #5a5a5a;
-  }
-  
-  /* Style for the list */
-  ul {
-    list-style-type: none;
-    padding-left: 0;
-  }
-  
-  ul li {
-    background-color: #f9fafb;
-    padding: 10px 15px;
-    margin: 5px 0;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 14px;
-    color: #444;
-  }
-  
-  ul li span {
-    font-weight: 500;
-    color: #2f5d84;
-  }
-  
-  /* Loading text style */
-  p.loading {
-    font-size: 18px;
-    color: #888;
-    text-align: center;
-  }
-  
-  /* Button Styling (if needed for any future enhancements) */
-  button {
-    padding: 12px 24px;
-    background-color: #1e2a47;
-    color: #fff;
-    font-size: 16px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #2f5d84;
-  }
-  
-  /* Animation */
-  @keyframes fadeIn {
-    from {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7fc;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+/* Centering the main content */
+.analysis-result {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Heading Styles (for markdown headings) */
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+  font-weight: bold;
+  color: #1e2a47;
+  margin-bottom: 15px;
+}
+
+.markdown-content h1 {
+  font-size: 2rem;
+}
+
+.markdown-content h2 {
+  font-size: 1.75rem;
+}
+
+.markdown-content h3 {
+  font-size: 1.5rem;
+}
+
+.markdown-content h4 {
+  font-size: 1.25rem;
+}
+
+.markdown-content h5 {
+  font-size: 1.1rem;
+}
+
+.markdown-content h6 {
+  font-size: 1rem;
+}
+
+/* Paragraph Styles (for markdown paragraphs) */
+.markdown-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #5a5a5a;
+  margin-bottom: 15px;
+}
+
+/* Style for Strong text (bold in markdown) */
+.markdown-content strong {
+  font-weight: bold;
+  color: #2f5d84;
+}
+
+/* Style for Emphasized text (italic in markdown) */
+.markdown-content em {
+  font-style: italic;
+  color: #2f5d84;
+}
+
+/* List Styles */
+.markdown-content ul,
+.markdown-content ol {
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+.markdown-content li {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+/* Styling for Unordered Lists */
+.markdown-content ul li {
+  list-style-type: disc;
+}
+
+/* Styling for Ordered Lists */
+.markdown-content ol li {
+  list-style-type: decimal;
+}
+
+/* Blockquote Styles */
+.markdown-content blockquote {
+  border-left: 4px solid #2f5d84;
+  padding-left: 15px;
+  margin-left: 0;
+  margin-bottom: 15px;
+  font-style: italic;
+  color: #555;
+}
+
+/* Code Block Styles */
+.markdown-content pre {
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+  font-size: 1rem;
+  color: #333;
+  font-family: 'Courier New', Courier, monospace;
+  margin-bottom: 15px;
+}
+
+.markdown-content code {
+  background-color: #f4f4f4;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 1rem;
+  color: #2f5d84;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* Image Styles */
+.markdown-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* Link Styles */
+.markdown-content a {
+  color: #2f5d84;
+  text-decoration: none;
+}
+
+.markdown-content a:hover {
+  text-decoration: underline;
+}
+
+/* Loading text style */
+p.loading {
+  font-size: 18px;
+  color: #888;
+  text-align: center;
+}
+
+/* Button Styling (if needed for any future enhancements) */
+button {
+  padding: 12px 24px;
+  background-color: #1e2a47;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2f5d84;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
       opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
   }
-  
+  to {
+      opacity: 1;
+  }
+}
+
+.analysis-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Spinner Styles */
+.loading-message .spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.loading-message .spinner .loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+}
+
+/* Spinner Animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Analysis Result Styles */
+.analysis-result {
+  background-color: #f9fafb;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.analysis-result h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.markdown-content ul {
+  margin-left: 20px;
+}
+
+.markdown-content li {
+  margin-bottom: 5px;
+}
+
+.waiting-message {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+/* Add a simple animation to the spinner */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
