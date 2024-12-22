@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from "../components/Header/Header";
 import Sidebar from "../components/Sidebar/Sidebar";
+import GPAComponent from './GPAComponent/GPAComponent';
 import Main11 from "../ui/Main11";
 import Content from "../ui/Content";
 import axios from "axios";
@@ -28,7 +29,7 @@ const StudentDashBord = () => {
 
   // Function to get the JWT token from local storage
   const getToken = () => {
-    return localStorage.getItem('token');  // Or wherever you store the token after login
+    return localStorage.getItem('token'); // Or wherever you store the token after login
   };
 
   // Fetch student data
@@ -41,28 +42,24 @@ const StudentDashBord = () => {
           return;
         }
 
-        // Decode the token to get reg_no (for students)
+        // Decode the token to get index_no (for students)
         const decodedToken = JSON.parse(atob(token.split('.')[1])); // Decodes the payload of JWT
-        const indexNo = decodedToken.index_no;  // Extract reg_no from the decoded token
+        const indexNo = decodedToken.index_no;
 
-        // If reg_no is missing from the token, show error
         if (!indexNo) {
           setError("Invalid token. Unable to fetch student details.");
           return;
         }
 
-        // Fetch data from the backend API using reg_no
         const response = await axios.get(`http://localhost:3000/api/students/details`, {
-          headers: {
-            Authorization: `Bearer ${token}`,  // Send token in the Authorization header
-          },
+          headers: { Authorization: `Bearer ${token}` },
         });
 
         setStudentData(response.data);
         setActiveSemester(Object.keys(response.data.results)[0]); // Set the first semester as active by default
       } catch (error) {
         console.error("Error fetching student data:", error);
-        setError("Failed to load student data. Please try again later.");
+        setError(error.response?.data?.message || "Failed to load student data. Please try again later.");
       }
     };
 
@@ -70,18 +67,25 @@ const StudentDashBord = () => {
   }, []);
 
   if (error) {
-    return <div className="text-red-500 text-center">{error}</div>;
+    return (
+      <div className="flex items-center justify-center h-screen text-red-500">
+        <span className="mr-2">⚠️</span> {error}
+      </div>
+    );
   }
 
   if (!studentData) {
-    return <div className="text-gray-500 text-center">Loading...</div>;
+    return (
+      <div className="flex items-center justify-center h-screen text-gray-500">
+        <div className="loader">Loading...</div>
+      </div>
+    );
   }
 
-  // Check if there are no results for the selected semester
   const results = studentData.results[activeSemester]?.subjects || [];
 
   return (
-    <div className={`${darkMode && "dark"} font-quicksand bg-slate-200 h-screen flex overflow-hidden`}>
+    <div className={`${darkMode ? "dark bg-gray-900 text-gray-100" : "bg-slate-200 text-gray-800"} font-quicksand h-screen flex overflow-hidden`}>
       <Sidebar isSideBarOpen={isSideBarOpen} className="z-50 max-w-[200px]" />
 
       <div className="flex flex-col flex-1 overflow-hidden">
@@ -89,23 +93,23 @@ const StudentDashBord = () => {
 
         <div className="flex-1 ml-[240px] overflow-auto">
           {selectedCardContent && (
-            <div className="p-4 bg-white">
+            <div className="p-4 bg-white dark:bg-gray-800">
               {selectedCardContent}
             </div>
           )}
 
           <Main11>
             <Content>
-              <div className="min-h-screen p-4 bg-gray-50 md:p-8">
+              <div className="min-h-screen p-4 bg-gray-50 dark:bg-gray-800 md:p-8">
                 {/* Student Details */}
-                <div className="p-6 mb-8 bg-white rounded-lg shadow-md">
+                <div className="p-6 mb-8 bg-white dark:bg-gray-700 rounded-lg shadow-md">
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between">
                     <div>
-                      <h1 className="text-2xl font-bold text-gray-800">{studentData.reg_no}</h1><br />
-                      <p className="text-gray-500">IndexNO: {studentData.index_no}</p>
+                      <h1 className="text-2xl font-bold">{studentData.reg_no}</h1>
+                      <p className="text-gray-500">Index No: {studentData.index_no}</p>
                     </div>
                     <div className="mt-4 md:mt-0">
-                      <p className="text-gray-500">
+                      <p>
                         Department:{" "}
                         {studentData.reg_no.includes("/COM/")
                           ? "Computer Science"
@@ -117,16 +121,18 @@ const StudentDashBord = () => {
                   </div>
                 </div>
 
-
                 {/* Semester Buttons */}
                 <div className="mb-8 overflow-x-auto">
-                  <div className="flex space-x-2 min-w-max">
+                  <div className="flex space-x-2">
                     {Object.keys(studentData.results).map((sem) => (
                       <button
                         key={sem}
                         onClick={() => setActiveSemester(sem)}
-                        className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200 
-                          ${activeSemester === sem ? 'bg-blue-500 text-white' : 'bg-white text-gray-600 hover:bg-gray-50'}`}
+                        className={`px-4 py-2 rounded-lg font-medium ${
+                          activeSemester === sem
+                            ? "bg-blue-500 text-white"
+                            : "bg-white text-gray-600 dark:bg-gray-700 dark:text-gray-300 hover:bg-gray-100"
+                        }`}
                       >
                         Semester {sem}
                       </button>
@@ -135,24 +141,34 @@ const StudentDashBord = () => {
                 </div>
 
                 {/* Results Section */}
-                <div className="bg-white rounded-lg shadow-md">
-                  <div className="p-6 border-b border-gray-100">
-                    <h2 className="text-xl font-semibold text-gray-800">Semester {activeSemester} Results</h2>
-                    {/* <span className="text-lg font-bold text-gray-800">GPA: {studentData.results[activeSemester].gpa}</span> */}
+                <div className="bg-white dark:bg-gray-700 rounded-lg shadow-md">
+                  <div className="p-6 border-b border-gray-100 dark:border-gray-600">
+                    <h2 className="text-xl font-semibold">Semester {activeSemester} Results</h2>
+                    <div className="mt-4 bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                      <GPAComponent
+                        results={results}
+                        activeSemester={activeSemester}
+                        requiredSubjects={{
+                          '1.1': 10,
+                          '1.2': 9,
+                          '2.1': 10,
+                          '2.2': 9,
+                          '3.1': 10,
+                          '3.2': 7,
+                        }}
+                      />
+                    </div>
                   </div>
 
                   <div className="p-6">
                     {results.length === 0 ? (
                       <div className="text-center text-gray-500">No results to show</div>
                     ) : (
-                      <div className="grid gap-4">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {results.map((subject, index) => (
-                          <div
-                            key={index}
-                            className="flex flex-col justify-between p-4 rounded-lg md:flex-row md:items-center bg-gray-50"
-                          >
-                            <p className="font-medium text-gray-800">{subject.name}</p>
-                            <span className={`mt-2 md:mt-0 px-3 py-1 rounded-full text-sm font-medium ${getGradeColor(subject.grade)}`}>
+                          <div key={index} className="flex justify-between p-4 rounded-lg bg-gray-50 dark:bg-gray-800">
+                            <p className="font-medium">{subject.name}</p>
+                            <span className={`px-3 py-1 rounded-full text-sm ${getGradeColor(subject.grade)}`}>
                               {subject.grade}
                             </span>
                           </div>

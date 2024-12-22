@@ -94,29 +94,30 @@ const ResultsInfo = () => {
   };
   // Function to validate Excel data
   const validateExcelData = (data) => {
-    const errors = [];
-    data.forEach((row, index) => {
-      if (!row.regNo || !/^EUSL\/TC\/[A-Z]{2}\/\d{4}\/[A-Z]{3}\/\d{2}$/.test(row.regNo)) {
-        errors.push(`Row ${index + 1}: Invalid registration number (e.g., EUSL/TC/IS/2021/COM/41)`);
-      }
-      if (!row.indexNo || !/^\d{4}[a-zA-Z]+\d+$/.test(row.indexNo)) {
-        errors.push(`Row ${index + 1}: Missing or invalid index number (e.g., 2021com493)`);
-      }
-      if (!row.subject) {
-        errors.push(`Row ${index + 1}: Missing subject`);
-      }
-      if (!row.grade || !/^[A-F]$/.test(row.grade)) {
-        errors.push(`Row ${index + 1}: Missing or invalid grade (A-F only)`);
-      }
-      if (!row.year || !/^\d{4}\/\d{4}$/.test(row.year)) {
-        errors.push(`Row ${index + 1}: Invalid year format (e.g., 2021/2022)`);
-      }
-      if (!row.semester || !/^\d\.\d$/.test(row.semester)) {
-        errors.push(`Row ${index + 1}: Missing or invalid semester (e.g., 1.1, 2.2)`);
-      }
-    });
-    return errors;
-  };
+  const errors = [];
+  data.forEach((row, index) => {
+    if (!row.regNo || !/^EUSL\/TC\/[A-Z]{2}\/\d{4}\/[A-Z]{3}\/\d{2}$/.test(row.regNo)) {
+      errors.push(`Row ${index + 1}: Invalid registration number (e.g., EUSL/TC/IS/2021/COM/41)`);
+    }
+    if (!row.indexNo || !/^\d{4}[a-zA-Z]+\d+$/.test(row.indexNo)) {
+      errors.push(`Row ${index + 1}: Missing or invalid index number (e.g., 2021com493)`);
+    }
+    if (!row.subject) {
+      errors.push(`Row ${index + 1}: Missing subject`);
+    }
+    if (!row.grade || !/^[A-F][+-]?$/.test(row.grade)) {
+      errors.push(`Row ${index + 1}: Missing or invalid grade (e.g., A+, B-, C, etc.)`);
+    }
+    if (!row.year || !/^\d{4}\/\d{4}$/.test(row.year)) {
+      errors.push(`Row ${index + 1}: Invalid year format (e.g., 2021/2022)`);
+    }
+    if (!row.semester || !/^\d\.\d$/.test(row.semester)) {
+      errors.push(`Row ${index + 1}: Missing or invalid semester (e.g., 1.1, 2.2)`);
+    }
+  });
+  return errors;
+};
+
   
 
   // Function to process Excel data
